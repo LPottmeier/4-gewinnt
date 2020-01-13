@@ -7,9 +7,10 @@ from ki import calculate_drop
 
 pp = PrettyPrinter(indent=2)
 
-player_number = 1
+player_number = os.environ['PLAYER_NUMBER']
 #http://connect-4-api-dev1-connect4.apps.cluster-sva-7909.sva-7909.example.opentlc.com
 board_host =os.environ['BOARD_HOST_URL']
+
 
 def play():
     board_matrix, current_player = get_status()
