@@ -1,14 +1,19 @@
-import time, thread
+import requests
+import json
+from pprint import PrettyPrinter
 
-def myfunction(string, sleeptime, lock, *args):
-    while True:
-        lock.acquire()
-        time.sleep(sleeptime)
-        lock.release()
-        time.sleep(sleeptime)
+pp = PrettyPrinter(indent=2)
+
+def play():
+    board_matrix = get_board()
+
+def make_turn(row_number):
+    r = requests.post("http://connect-4-api-dev1-connect4.apps.cluster-sva-7909.sva-7909.example.opentlc.com/turn")
+
+def get_board():
+    r = requests.post("http://connect-4-api-dev1-connect4.apps.cluster-sva-7909.sva-7909.example.opentlc.com/board")
+    pp.pprint(r)
+
 
 if __name__ == "__main__":
-    lock = thread.allocate_lock()
-    thread.start_new_thread(myfunction, ("Thread #: 1", 2, lock))
-    thread.start_new_thread(myfunction, ("Thread #: 2", 2, lock))
-python namespaces main python-module idioms
+    play()
