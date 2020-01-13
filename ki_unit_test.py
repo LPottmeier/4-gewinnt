@@ -64,9 +64,17 @@ def turn(board, position, player):
 
 def test():
     board = init_board()
+    current_player = 1
     while player_won(board) == 0:
-        turn = calculate_drop(board, 1)
-    pp.pprint(board)
+        turn_pos = calculate_drop(board, current_player)
+        print("next turn player "+str(current_player)+": "+str(turn_pos))
+        turn(board, turn_pos, current_player)
+        if current_player == 1:
+            current_player = 2
+        else:
+            current_player = 1
+        pp.pprint(board)
+        print("\n/////////////////////////\n")
     #print(player_won(board))
 
 if __name__ == "__main__":
