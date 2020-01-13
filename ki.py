@@ -119,7 +119,7 @@ def calculate_drop ( board , myid):
         
          myrates[key] = rate_drop (board , key, element) 
          neighbour_rates[key] = rate_neighbour(board , key, element, myid)  
-         result =  myrates[key] =    neighbour_rates[key]
+         result[key] =  myrates[key] =+   neighbour_rates[key]
     print(myrates.values())
     print(neighbour_rates.values())
     
