@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 from pprint import PrettyPrinter
 
 from ki import calculate_drop
@@ -7,6 +8,8 @@ from ki import calculate_drop
 pp = PrettyPrinter(indent=2)
 
 player_number = 1
+#http://connect-4-api-dev1-connect4.apps.cluster-sva-7909.sva-7909.example.opentlc.com
+board_host =os.environ['BOARD_HOST_URL']
 
 def play():
     board_matrix, current_player = get_status()
@@ -17,11 +20,11 @@ def play():
         board_matrix, current_player = get_status()
 
 def make_turn(row_number):
-    r = requests.post("http://connect-4-api-dev1-connect4.apps.cluster-sva-7909.sva-7909.example.opentlc.com/turn",
+    r = requests.post(board_host +"/turn",
                         data=json.dumps({"player": player_number, "position": row_number}))
 
 def get_status():
-    r = requests.get("http://connect-4-api-dev1-connect4.apps.cluster-sva-7909.sva-7909.example.opentlc.com/board")
+    r = requests.get(board_host+"/board")
     if r.json()["status"] != "running":
         return None, None
     board = []
