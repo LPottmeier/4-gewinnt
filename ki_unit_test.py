@@ -103,6 +103,9 @@ def test():
 
         turn_pos = calculate_drop(board, current_player)
         print("next turn player "+str(current_player)+": "+str(turn_pos))
+        if turn_pos == None:
+            print("Not more possible turns")
+            return
         turn(board, turn_pos, current_player)
         if current_player == 1:
             current_player = 2
@@ -111,6 +114,8 @@ def test():
         pp.pprint(board)
         d = input()
         print("\n/////////////////////////\n")
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print("Player "+str(player_won(board))+" won!")
     #board = [ [0, 1, 0, 0, 0, 0, 0],
     #          [2, 1, 0, 2, 0, 1, 0],
     #          [1, 2, 0, 1, 0, 2, 0],

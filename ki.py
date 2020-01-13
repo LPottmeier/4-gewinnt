@@ -7,18 +7,26 @@ def find_drops ( board):
     result = {}
     for s in range(0,7):
         for z in range(0,6):
-            if board [z][s] != 0:
-                result[s] = z -1
-                break
-            elif z == 5:
+            if z<5 and board[z][s] == 0 and board[z+1][s] != 0:
                 result[s] = z
                 break
+            elif z == 5 and board[z][s] == 0:
+                result[s] = z
+                break
+    #        if board [z][s] != 0 and z > 0:
+    #            result[s] = z -1
+    #            break
+    #        elif z == 5:
+    #            result[s] = z
+    #            break
+    print("possible drops: "+str(result))
     return result
 #
 # 5 moegliche dimensionen auf leerfelder prüfen
 # 
 
 def rate_drop (board,  spalte, zeile ):
+    print("Rate drop: ["+str(zeile)+","+str(spalte)+"]")
     rating = 0
     oben = False
     links = False
@@ -33,6 +41,7 @@ def rate_drop (board,  spalte, zeile ):
     if spalte == 6:
         rechts = True
     if oben and board[zeile][spalte] != 0:
+        print(" -> 0")
         return 0
     for case in range(0,4):
         if case == 0 and not links and board [zeile][spalte-1] == 0 :
@@ -43,9 +52,11 @@ def rate_drop (board,  spalte, zeile ):
             rating = rating +1
         if case == 3 and not rechts and not oben and board [zeile -1][spalte +1] == 0 :
             rating = rating +1
-        if case == 4 and not rechts and board [zeile ][spalte + 1 ] == 0 :
-            rating = rating +1
+        if case == 4 and not rechts and board [zeile][spalte + 1 ] == 0 :
+            rating = rating +1;
+
   
+    print(" -> "+str(rating))
     return rating 
 
 
@@ -95,7 +106,7 @@ def keywithmaxval(d):
          b) return the key with the max value"""  
      v=list(d.values())
      k=list(d.keys())
-     return k[v.index(max(v))]
+     return k[v.index(max(v))] if len(v)!= 0 else None
 
 def calculate_drop ( board , myid):
     possible_drops = find_drops( board)
