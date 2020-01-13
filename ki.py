@@ -38,6 +38,12 @@ def rate_drop (board,  zeile, spalte )
   
    return rating 
 
+def keywithmaxval(d):
+     """ a) create a list of the dict's keys and values; 
+         b) return the key with the max value"""  
+     v=list(d.values())
+     k=list(d.keys())
+     return k[v.index(max(v))]
 
  def calculate_drop ( board , myid):
     possible_drops = find_drops( board)
@@ -46,5 +52,5 @@ def rate_drop (board,  zeile, spalte )
     for key, element in possible_drops.items():
          myrates[key] = rate_drop (board , key, element, myid)
     #  find best for us
-         
-    return drop
+
+    return keywithmaxval(myrates)
