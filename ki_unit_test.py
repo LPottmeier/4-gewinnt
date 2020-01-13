@@ -100,6 +100,7 @@ def test():
     board = init_board()
     current_player = 1
     while player_won(board) == 0:
+
         turn_pos = calculate_drop(board, current_player)
         print("next turn player "+str(current_player)+": "+str(turn_pos))
         if turn_pos == None:
