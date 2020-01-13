@@ -167,5 +167,7 @@ def calculate_drop ( board , myid):
     print(result.values())
     
     #  find best for us
+    spalte = keywithmaxval(result)
+    zeile = possible_drops[spalte]
 
-    return keywithmaxval(result)
+    return zeile * 7 + spalte
