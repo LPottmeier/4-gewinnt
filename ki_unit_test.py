@@ -72,10 +72,10 @@ def player_won(board):
         for a in range(0,6):
             if s+a < 0 or s+a >= 7:
                 continue
-            if board[5-a][s+a] == 1:
+            if board[5-a][s-a] == 1:
                 in_a_row[0] += 1
                 in_a_row[1] = 0
-            if board[5-a][s+a] == 2:
+            if board[5-a][s-a] == 2:
                 in_a_row[0] = 0
                 in_a_row[1] += 1
             else:
@@ -107,23 +107,23 @@ def test():
             print("Not more possible turns")
             return
         turn(board, turn_pos, current_player)
-        if current_player == 1:
-            current_player = 2
-        else:
-            current_player = 1
+        #if current_player == 1:
+        #    current_player = 2
+        #else:
+        #    current_player = 1
         pp.pprint(board)
-        d = input()
+        d = input("Your Turn: ")
+        turn(board, int(d), 2)
         print("\n/////////////////////////\n")
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     print("Player "+str(player_won(board))+" won!")
-    #board = [ [0, 1, 0, 0, 0, 0, 0],
-    #          [2, 1, 0, 2, 0, 1, 0],
-    #          [1, 2, 0, 1, 0, 2, 0],
-    #          [2, 1, 0, 2, 0, 1, 0],
-    #          [1, 2, 0, 1, 0, 2, 0],
-    #          [2, 1, 0, 2, 0, 1, 0]]
-
-    #print(player_won(board))
+    #board = [ [0, 0, 0, 0, 0, 0, 0],
+#			  [0, 1, 1, 0, 0, 1, 0],
+#			  [0, 2, 1, 1, 0, 1, 0],
+#			  [0, 1, 2, 1, 0, 2, 0],
+#			  [0, 1, 2, 2, 2, 1, 2],
+#			  [0, 1, 2, 2, 2, 1, 2]]  
+#    print(player_won(board))
 
 if __name__ == "__main__":
     test()
