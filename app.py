@@ -25,6 +25,7 @@ def play():
 def make_turn(row_number):
     r = requests.post(board_host +"/turn",
                         data=json.dumps({"player": player_number, "position": row_number}))
+    print(r)
 
 def get_status():
     r = requests.get(board_host+"/board")

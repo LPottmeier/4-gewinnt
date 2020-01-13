@@ -26,7 +26,7 @@ def find_drops ( board):
 # 
 
 def rate_drop (board,  spalte, zeile ):
-    print("Rate drop: ["+str(zeile)+","+str(spalte)+"]")
+    #print("Rate drop: ["+str(zeile)+","+str(spalte)+"]")
     rating = 0
     oben = False
     links = False
@@ -56,7 +56,7 @@ def rate_drop (board,  spalte, zeile ):
             rating = rating +1;
 
   
-    print(" -> "+str(rating))
+    #print(" -> "+str(rating))
     return rating 
 
 
@@ -161,8 +161,8 @@ def calculate_drop ( board , myid):
          neighbour_rates[key] = rate_neighbour(board , key, element, myid)  
          enemy_rates[key] = rate_enemy(board , key, element, myid)  
          result[key] =  myrates[key] +   neighbour_rates[key] +   enemy_rates[key]
-    print(myrates.values())
-    print(neighbour_rates.values())
+    #print(myrates.values())
+    #print(neighbour_rates.values())
     
     print(result.values())
     
