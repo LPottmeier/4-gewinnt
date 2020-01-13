@@ -52,12 +52,13 @@ def rate_neighbour (board,  spalte, zeile, myid ):
    oben = False
    links = False
    rechts = False
+   unten = False
    # oben
    if zeile == 0:
        oben = True
     # unten
    if zeile == 5:
-       oben = True
+       unten = True
    # links   
    if spalte == 0:
         links = True
