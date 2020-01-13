@@ -99,6 +99,45 @@ def rate_neighbour (board,  spalte, zeile, myid ):
   
    return rating 
 
+def rate_enemy (board,  spalte, zeile, myid ):
+   rating = 0
+   oben = False
+   links = False
+   rechts = False
+   unten = False
+   # oben
+   if zeile == 0:
+       oben = True
+    # unten
+   if zeile == 5:
+       unten = True
+   # links   
+   if spalte == 0:
+        links = True
+   # rechts   
+   if spalte == 6:
+        rechts = True
+   for case in range(0,6):
+       if case == 0 and not links and board [zeile][spalte-1] != myid :
+           rating = rating +1
+       if case == 1 and  not links and not oben and board [zeile -1][spalte-1] != myid :
+           rating = rating +1
+       if case == 2 and  not oben and board [zeile -1][spalte]  != myid :
+           rating = rating +1
+       if case == 3 and not rechts and not oben and board [zeile -1][spalte +1] != myid :
+           rating = rating +1
+       if case == 4 and not rechts and board [zeile ][spalte + 1 ]  != myid :
+           rating = rating +1
+       if case == 5 and not unten and not rechts and board [zeile - 1][spalte + 1 ]  != myid:
+           rating = rating +1
+       if case == 6 and not unten and board [zeile - 1][spalte  ]  != myid :
+           rating = rating +1
+       if case == 7 and not unten and not links and board [zeile - 1 ][spalte - 1 ]  != myid :
+           rating = rating +1
+  
+  
+   return rating 
+
 
 
 def keywithmaxval(d):
@@ -112,6 +151,7 @@ def calculate_drop ( board , myid):
     possible_drops = find_drops( board)
     myrates = {}
     neighbour_rates = {}
+    enemy_rates = {}
     result = {}
     # calculate rates
     for key, element in possible_drops.items():
@@ -119,7 +159,8 @@ def calculate_drop ( board , myid):
         
          myrates[key] = rate_drop (board , key, element) 
          neighbour_rates[key] = rate_neighbour(board , key, element, myid)  
-         result[key] =  myrates[key] =+   neighbour_rates[key]
+         enemy_rates[key] = rate_enemy(board , key, element, myid)  
+         result[key] =  myrates[key] +   neighbour_rates[key] +   enemy_rates[key]
     print(myrates.values())
     print(neighbour_rates.values())
     
